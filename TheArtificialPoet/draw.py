@@ -2,13 +2,12 @@ import subprocess
 import random, os, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-cmd20 = "awk -F\"|\" '$12 == 20{print}' ../poem_db.csv | sort -R | head -n 1"
-cmd40 = "awk -F\"|\" '$12 == 40{print}' ../poem_db.csv | sort -R | head -n 1"
+cmd20 = "awk -F\"|\" '$11 == 20{print}' ../poem_db.csv | sort -R | head -n 1"
+cmd40 = "awk -F\"|\" '$11 == 40{print}' ../poem_db.csv | sort -R | head -n 1"
 
 os.chdir(sys.argv[1])
 for fn in os.listdir('.'):
  fnr = random.choice([x for x in os.listdir('.')])
- print(fnr)
  fnr_list = fnr.split('_')
  color = fnr_list[0]
  if color == "w":
@@ -35,21 +34,17 @@ for fn in os.listdir('.'):
  else:
     print "Incorrect filename"
 
- print(pos1,pos2,pos3,pos4,cmd)
  row = subprocess.check_output(cmd, shell=True)
  index = row.split('|')[0]
  author_name = row.split('|')[1]
  author_bio = row.split('|')[2]
  poem_type = row.split('|')[3]
  poem_context = row.split('|')[4]
- poem_fulltext = row.split('|')[5]
- poem_line1 = row.split('|')[6]
- poem_line2 = row.split('|')[7]
- poem_line3 = row.split('|')[8]
- poem_line4 = row.split('|')[9]
- poem_specific_hashtags = row.split('|')[10]
- poem_width = row.split('|')[11]
- print(index,author_name)
+ poem_line1 = row.split('|')[5]
+ poem_line2 = row.split('|')[6]
+ poem_line3 = row.split('|')[7]
+ poem_line4 = row.split('|')[8]
+ poem_specific_hashtags = row.split('|')[9]
 
  base = Image.open(fnr).convert('RGBA')
  txt = Image.new('RGBA', base.size, (255,255,255,0))
@@ -60,12 +55,13 @@ for fn in os.listdir('.'):
  d.text(pos3, poem_line3, font=fnt, fill=clr)
  d.text(pos4, poem_line4, font=fnt, fill=clr)
  out = Image.alpha_composite(base, txt)
- out.save('../ReadyToPost/%s_%s.png' % (index,author_name))
+ rand = random.randint(1,9999)
+ out.save('../ReadyToPost/%s_%s_%d.png' % (index,author_name,rand))
 # im = Image.open('%s_%s.png' % (index,author_name))
 # im.save('../ReadyToPost/%s_%s.jpg' % (index,author_name))
 # os.remove('%s_%s.png' % (index,author_name))
 
- caption = "\n" + poem_type + "by" + author_name + "\n" + poem_fulltext + "\n" + author_bio + "\n" + poem_context + "\n" + poem_specific_hashtags 
+ caption = "\n" + poem_type + " by " + author_name + "\n" + author_bio + "\n" + poem_context + "\n" + poem_specific_hashtags 
  text_file = open('../ReadyToPost/%s_%s.txt' % (index,author_name), 'wb')
  text_file.write(caption)
  text_file.close()
