@@ -28,9 +28,9 @@ for fn in os.listdir('.'):
  elif pos == "topr":
     pos1,pos2,pos3,pos4,cmd=(320,100),(320,140),(320,180),(320,220),cmd20
  elif pos == "bottoml":
-    pos1,pos2,pos3,pos4,cmd=(50,400),(50,440),(50,480),(50,520),cmd20
+    pos1,pos2,pos3,pos4,cmd=(50,360),(50,400),(50,440),(50,480),cmd20
  elif pos == "bottomr":
-    pos1,pos2,pos3,pos4,cmd=(320,400),(320,440),(320,480),(320,520),cmd20
+    pos1,pos2,pos3,pos4,cmd=(320,360),(320,400),(320,440),(320,480),cmd20
  else:
     print "Incorrect filename"
 

@@ -11,10 +11,9 @@ fnt = ImageFont.truetype('SpecialElite.ttf', 30)
 # get a drawing context
 d = ImageDraw.Draw(txt)
 
-200, 100 -- 190, 140 -- 180, 180 -- 170, 220, -- 160, 260 -- 150, 300
-
+l1=(50,300)
 # add text
-d.text((50,300), "Out of the night that covers me,", font=fnt, fill=(0,0,0,255))
+d.text(l1, "Out of the dasdad,", font=fnt, fill=(0,0,0,255))
 d.text((50,340), "Black as the pit from pole to pole,", font=fnt, fill=(0,0,0,255))
 d.text((50,380), "I thank whatever gods may be", font=fnt, fill=(0,0,0,255))
 d.text((50,420), "For my unconquerable soul.,", font=fnt, fill=(0,0,0,255))
